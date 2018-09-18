@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+ensure_line_in_file () {
+  file="$1"
+  line="$2"
+  grep -q "$line" <"$file" || sudo sh -c "printf %s\\\\n '$line' >> $file"
+}
+
+for host in "$@"
+do
+  ensure_line_in_file '/etc/hosts' "127.0.0.0.1 $host"
+done
