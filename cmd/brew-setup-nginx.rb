@@ -16,20 +16,24 @@ abort "Error: #{input} is not a .erb file!" unless input.end_with? ".erb"
 
 root = File.expand_path root
 input = File.expand_path input
-
-# Find extra variables in the form of --extra-val=variable=value
-# Using a hash and ERB#result_with_hash would be nice, but it didn't
-# appear until Ruby 2.5. :/
-variables = binding
-ARGV.delete_if do |argument|
-  next unless argument.start_with? "--extra-val="
-  variable, value = argument.sub(/^--extra-val=/, "").split("=", 2)
-  variables.local_variable_set(variable.to_sym, value)
-
-  true
-end
-
-data = IO.read input
-conf = ERB.new(data).result(variables)
 output = "/usr/local/etc/nginx/sites-enabled/#{name}"
-IO.write output, conf
+
+unless File.exist?(output)
+  puts "Writing nginx config to #{output}"
+  # Find extra variables in the form of --extra-val=variable=value
+  # Using a hash and ERB#result_with_hash would be nice, but it didn't
+  # appear until Ruby 2.5. :/
+  variables = binding
+  ARGV.delete_if do |argument|
+    next unless argument.start_with? "--extra-val="
+    variable, value = argument.sub(/^--extra-val=/, "").split("=", 2)
+    variables.local_variable_set(variable.to_sym, value)
+
+    true
+  end
+
+  data = IO.read input
+  conf = ERB.new(data).result(variables)
+  IO.write output, conf
+  `sudo brew services restart nginx`
+end
