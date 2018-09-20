@@ -8,5 +8,5 @@ ensure_line_in_file () {
 
 for host in "$@"
 do
-  ensure_line_in_file '/etc/hosts' "127.0.0.0.1 $host"
+  ensure_line_in_file '/etc/hosts' "127.0.0.1 $host"
 done
