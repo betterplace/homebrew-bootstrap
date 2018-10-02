@@ -7,5 +7,5 @@ cask 'scalingo' do
   name 'scalingo'
   homepage 'http://cli.scalingo.com/'
 
-  binary "scalingo_#{version}_darwin_amd64/scalingo"
+  binary "scalingo_#{version}_darwin_amd64/scalingo", target: 'scalingo'
 end
