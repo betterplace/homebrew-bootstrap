@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+initial_1p_signin () {
+  if [ ! -f "$HOME/.op/config" ]; then
+    read -p "Email for 1Password login: " one_pass_email
+    eval $(op signin betterplace $one_pass_email)
+  fi
+}
+
+initial_1p_signin

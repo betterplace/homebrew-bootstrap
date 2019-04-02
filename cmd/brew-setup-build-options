@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+check_continue () {
+  read -n1 -p "Continue (y/N)? " cont
+  if  [ "$cont" != 'y' ];
+  then
+    echo "ABORT"
+    exit 1
+  fi
+  echo
+}
+
+echo "Setting up bundler config for $1 with options $2"
+check_continue
+bundle config $1 $2

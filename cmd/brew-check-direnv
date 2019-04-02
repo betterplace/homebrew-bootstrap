@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+check_direnv () {
+  if direnv status | grep -q 'Found RC allowed false'; then
+    echo "Your .envrc is currently not allowed. If you continue, we'll allow it"
+    check_continue
+    direnv allow
+  fi
+}
+
+check_direnv
