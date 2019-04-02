@@ -10,6 +10,9 @@ check_continue () {
   echo
 }
 
-echo "Setting up bundler config for $1 with options $2"
-check_continue
-bundle config $1 $2
+if [[ ! `bundle config $1` == *"$2"* ]]
+then
+  echo "Setting up bundler config for $1 with options $2"
+  check_continue
+  bundle config $1 $2
+fi
