@@ -8,3 +8,5 @@ install_homebrew_bundle () {
     }
   fi
 }
+
+install_homebrew_bundle
