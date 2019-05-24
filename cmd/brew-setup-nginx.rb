@@ -24,7 +24,7 @@ output = "#{sites_dir}/#{name}"
 if File.readlines("#{config_dir}/nginx.conf").grep(/include sites_enabled\/\*;/).size == 0
   puts "Add sites dir to nginx config"
   FileUtils.mkdir_p(sites_dir)
-  File.open("#{config_dir}/nginx.conf") { |f| f.puts 'include sites_enabled/*;' }
+  File.open("#{config_dir}/nginx.conf", 'a') { |f| f.puts 'include sites_enabled/*;' }
 end
 
 unless File.exist?(output)
