@@ -21,10 +21,10 @@ root = File.expand_path root
 input = File.expand_path input
 output = "#{sites_dir}/#{name}"
 
-if File.readlines("#{config_dir}/nginx.conf").grep(/include sites_enabled\/\*;/).size == 0
+if File.readlines("#{config_dir}/nginx.conf").grep(/include sites-enabled\/\*;/).size == 0
   puts "Add sites dir to nginx config"
   FileUtils.mkdir_p(sites_dir)
-  File.open("#{config_dir}/nginx.conf", 'a') { |f| f.puts 'include sites_enabled/*;' }
+  puts "You need to add 'include sites-enabled/*;' to your nginx.conf file"
 end
 
 unless File.exist?(output)
