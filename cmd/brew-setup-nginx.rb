@@ -9,7 +9,7 @@ name = ARGV.shift
 root = ARGV.shift || "."
 input = ARGV.shift || "config/dev/#{name}.conf.erb"
 config_dir = "/usr/local/etc/nginx"
-sites_dir = "#{config_dir}/sites-enabled"
+servers_dir = "#{config_dir}/servers"
 
 if !name || !root || !input
   abort "Usage: brew setup-nginx-conf [--root] [--extra-val=variable=value] <project_name> <project_root_path> <nginx.conf.erb>"
@@ -19,13 +19,7 @@ abort "Error: #{input} is not a .erb file!" unless input.end_with? ".erb"
 
 root = File.expand_path root
 input = File.expand_path input
-output = "#{sites_dir}/#{name}"
-
-if File.readlines("#{config_dir}/nginx.conf").grep(/include sites-enabled\/\*;/).size == 0
-  puts "Add sites dir to nginx config"
-  FileUtils.mkdir_p(sites_dir)
-  puts "You need to add 'include sites-enabled/*;' to your nginx.conf file"
-end
+output = "#{servers_dir}/#{name}"
 
 unless File.exist?(output)
   puts "Writing nginx config to #{output}"
