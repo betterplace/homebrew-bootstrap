@@ -2,8 +2,8 @@ class BetterplaceScripts < Formula
   desc "Shell scripts for betterplace.org"
   homepage "https://github.com/betterplace/better-scripts"
   url "https://github.com/betterplace/better-scripts.git",
-    :tag => 'v0.0.2',
-    :revision => '536a4957921b4187ea3636639b852bdccbab7f5b'
+    :tag => 'v0.0.3',
+    :revision => '8cf0fdda81f1d75de9573f8c1ce915b4a0bc6f2d'
 
   # depends_on "cmake" => :build
 
