@@ -1,4 +1,4 @@
-class BetterplaceScripts < Formula
+class BetterScripts < Formula
   desc "Shell scripts for betterplace.org"
   homepage "https://github.com/betterplace/better-scripts"
   url "https://github.com/betterplace/better-scripts.git",
