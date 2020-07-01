@@ -1,6 +1,6 @@
 cask 'scalingo' do
-  version '1.11.0'
-  sha256 '25a9207208aafab138e68a7f508f3d46b60682b7801e65fbb8f712e2cfd224dc'
+  version '1.18.1'
+  sha256 '372086e6b1f3c984892c552925712492caeaaae0d736ffbaa4fe5f273f8443b8'
 
   # github.com/Scalingo was verified as official when first introduced to the cask
   url "https://github.com/Scalingo/cli/releases/download/#{version}/scalingo_#{version}_darwin_amd64.zip"
